@@ -1,1 +1,1 @@
-# Escape-Room-Besttimes
+# Escape-Room-Highscores
