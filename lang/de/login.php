@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Bestehenden Account verwenden',
+    'title' => 'Einloggen',
     'username' => 'Benutzername',
     'password' => 'Passwort',
     'remember_me' => 'Angemeldet bleiben',

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Requests\LoginRequest;
+use App\Requests\PostResetRequest;
 use Auth;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,7 +15,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Validation\Rules\Password as PasswordRule;
 use Str;
 
 class LoginController extends Controller {
@@ -38,29 +39,14 @@ class LoginController extends Controller {
 
     /***
      * Validates the login form and logs the user in
-     * @param Request $request
+     * @param LoginRequest $request
      * @return RedirectResponse
      */
-    public function postLogin(Request $request): RedirectResponse {
-
+    public function postLogin(LoginRequest $request): RedirectResponse {
         // If the validation fails, the user will be redirected to login with an error message
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            if (!Auth::user()
-                ->hasVerifiedEmail()) {
-
-                return redirect()
-                    ->route('home')
-                    ->with([
-                        'success' => __('login.success')]);
-            }
-
             return redirect()
                 ->route('home')
                 ->with('success', __('login.success'));
@@ -80,7 +66,7 @@ class LoginController extends Controller {
     public function logout(): RedirectResponse {
         Auth::logout();
         return redirect()
-            ->route('home')
+            ->route('login')
             ->with('success', __('login.logout_message'));
     }
 
@@ -122,22 +108,10 @@ class LoginController extends Controller {
 
     /***
      * Resets the password, validates the form and logs the user in
-     * @param Request $request
+     * @param PostResetRequest $request
      * @return RedirectResponse
      */
-    public function postResetPassword(Request $request): RedirectResponse {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => [
-                'required',
-                'confirmed',
-                PasswordRule::min(8)
-                    ->mixedCase()
-                    ->numbers()
-            ],
-        ]);
-
+    public function postResetPassword(PostResetRequest $request): RedirectResponse {
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {

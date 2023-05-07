@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Escape-Highscores',
-    'description' => 'In Development!',
+    'title' => 'Informationen',
+    'subtitle' => 'Infos für die nächste Schicht'
 
 ];

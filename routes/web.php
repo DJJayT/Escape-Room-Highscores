@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,18 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Default-Route - Homepage
-Route::get('/', function () {
-    if (!Auth::user()) {
-        return redirect('/login');
-    }
-
-    return view('home');
-})
+Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
 //Auth Routes
 Route::group([
-    'middleware' => 'guest'
+    'middleware' => [
+        'guest'
+    ]
 ], function () {
     Route::get('login', [LoginController::class, 'index'])
         ->name('login');

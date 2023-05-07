@@ -10,6 +10,11 @@
 
     <script src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
     <script src="{{ asset('js/utilities.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('css/SIdebar-Responsive-2-ResponsiveSideBar-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/SIdebar-Responsive-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     @vite(['resources/js/app.js'])
 
     @yield('extra-fonts')
@@ -17,8 +22,6 @@
     @yield('extra-js')
 </head>
 <body>
-
 @yield('content')
-
 </body>
 </html>

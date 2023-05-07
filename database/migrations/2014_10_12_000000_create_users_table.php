@@ -19,6 +19,8 @@ return new class extends Migration
                 ->unique();
             $table->string('email')
                 ->unique();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->dateTime('email_verified_at')
                 ->nullable();
             $table->string('password');

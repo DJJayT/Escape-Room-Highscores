@@ -23,7 +23,7 @@ return [
     'no' => 'Nein',
     'or' => 'oder',
     'and' => 'und',
-    'greetings' => 'Hallo :name!',
+    'greetings' => 'Hallo :first_name!',
     'build' => 'Bauen',
     'from' => 'von',
     'to' => 'zu',
