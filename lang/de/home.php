@@ -3,6 +3,6 @@
 return [
 
     'title' => 'Informationen',
-    'subtitle' => 'Infos für die nächste Schicht'
+    'subtitle' => 'Infos für die nächste Schicht',
 
 ];

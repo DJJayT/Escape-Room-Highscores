@@ -12,13 +12,15 @@ return new class extends Migration {
             $table->longText('paragraph');
             $table->boolean('pinned')->default(false);
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->nullOnDelete();
             $table->foreignId('badge_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

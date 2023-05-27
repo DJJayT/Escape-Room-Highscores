@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/SIdebar-Responsive-2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
 
     @yield('extra-fonts')
     @yield('extra-css')

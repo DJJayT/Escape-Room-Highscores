@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,4 +52,26 @@ Route::get('logout', [LoginController::class, 'logout'])
 Route::group(['middleware' => ['auth']], function () {
     Route::get('test', [LoginController::class, 'forgottenPassword'])
         ->name('test');
+
+    Route::group(['name' => 'messages', 'prefix' => 'message'], function () {
+        Route::get('create', [MessageController::class, 'indexNewMessage'])
+            ->name('createNewMessage');
+        Route::post('create', [MessageController::class, 'create'])
+            ->name('createMessage');
+
+        Route::get('all', [MessageController::class, 'index'])
+            ->name('showAllMessages');
+
+
+        Route::get('messages/{id}', [MessageController::class, 'show'])
+            ->name('showMessage');
+        Route::post('messages', [MessageController::class, 'store'])
+            ->name('storeMessage');
+        Route::get('messages/{id}/edit', [MessageController::class, 'edit'])
+            ->name('editMessage');
+        Route::put('messages/{id}', [MessageController::class, 'update'])
+            ->name('updateMessage');
+        Route::delete('messages/{id}', [MessageController::class, 'destroy'])
+            ->name('destroyMessage');
+    });
 });

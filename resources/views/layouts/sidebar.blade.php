@@ -12,18 +12,46 @@
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link align-middle px-0">
                                 <i class="bi bi-house-door-fill fs-4"></i>
-                                <span class="ms-1 d-none d-sm-inline">Home</span>
+                                <span class="ms-1 d-none d-sm-inline">{{ __('sidebar.home') }}</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="bi bi-envelope-fill fs-4"></i>
-                                <span class="ms-1 d-none d-sm-inline">New Message</span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-0 align-middle" href="#message-menu" data-bs-toggle="collapse"
+                               role="button" aria-expanded="false" aria-controls="message-menu">
+                                <i class="fs-4 bi bi-envelope-fill"></i>
+                                <span class="ms-1 d-none d-sm-inline">Nachrichten</span>
                             </a>
+                            <ul id="message-menu" class="nav flex-column ms-1 collapse ms-1 ms-md-3">
+                                <li class="w-100">
+                                    <a href="{{ route('showAllMessages') }}"
+                                       class="nav-link px-0 bi bi-envelope-open-fill">
+                                        <span class="d-none d-sm-inline">{{ __('sidebar.all-messages') }}</span>
+                                    </a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="{{ route('createNewMessage') }}"
+                                       class="nav-link px-0 bi bi-envelope-plus-fill">
+                                        <span class="d-none d-sm-inline">{{ __('sidebar.new-message') }}</span>
+                                    </a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0 bi bi-patch-question-fill">
+                                        <span class="d-none d-sm-inline">{{ __('sidebar.all-badges') }}</span>
+                                    </a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0 bi bi-patch-plus-fill">
+                                        <span class="d-none d-sm-inline">{{ __('sidebar.new-badge') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a class="nav-link px-0 align-middle" href="#submenu1" data-bs-toggle="collapse"
                                role="button" aria-expanded="false" aria-controls="submenu1">
-                                <i class="fa fa-bar-chart fs-4 bi-speedometer2"></i>
-                                <span class="ms-1 d-none d-sm-inline">Highscores</span></a>
+                                <i class="fa fa-bar-chart fs-4"></i>
+                                <span class="ms-1 d-none d-sm-inline">Highscores</span>
+                            </a>
                             <ul id="submenu1" class="nav flex-column ms-1 collapse ms-1 ms-md-3">
                                 <li class="w-100"><a href="#" class="nav-link px-0">
                                         <span class="d-none d-sm-inline">Item</span>
@@ -76,7 +104,7 @@
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-none d-sm-inline mx-1">{{ Auth::user()->first_name }}</span>
+                            <span class="d-none d-sm-inline mx-1">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                             <li>

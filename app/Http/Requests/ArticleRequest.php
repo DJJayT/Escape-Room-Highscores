@@ -8,8 +8,7 @@ class ArticleRequest extends FormRequest {
     public function rules(): array {
         return [
             'header' => ['required'],
-            'paragraph' => ['required'],
-            'user_id' => ['required', 'integer'],
+            'message' => ['required'],
             'badge_id' => ['required', 'integer'],
         ];
     }

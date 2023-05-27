@@ -19,8 +19,11 @@ return new class extends Migration
                 ->unique();
             $table->string('email')
                 ->unique();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('name');
+            $table->integer('role')
+                ->default(1); //TODO: add foreign key
+            $table->string('avatar')
+                ->nullable();
             $table->dateTime('email_verified_at')
                 ->nullable();
             $table->string('password');

@@ -25,14 +25,15 @@
             @foreach($articles as $article)
                 <div class="col">
                     <div class="p-4">
-                        <span class="badge rounded-pill bg-primary mb-2">{{ $article->badge->name }}</span>
+                        <span class="badge rounded-pill bg-primary mb-2">{{ $article->badge->name ?? __('common.deleted_badge') }}</span>
                         <h4>{{ $article->header }}</h4>
                         <p>{{ $article->paragraph }}</p>
                         <div class="d-flex">
+                            @php($avatar = $article->user->avatar ?? "default.jpg")
                             <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50"
-                                 src="{{ asset('storage/images/profiles/default.jpg') }}">
+                                 src="{{ asset('storage/images/profiles/' . $avatar) }}">
                             <div>
-                                <p class="fw-bold mb-0">{{ $article->user->first_name }}</p>
+                                <p class="fw-bold mb-0">{{ $article->user->name ?? __('common.deleted_employee') }}</p>
                                 <p class="text-muted mb-0">{{ $article->created_at }}</p>
                             </div>
                         </div>
