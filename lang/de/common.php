@@ -14,6 +14,7 @@ return [
     'save' => 'Speichern',
     'delete' => 'Löschen',
     'edit' => 'Bearbeiten',
+    'edited' => 'Bearbeitet',
     'update' => 'Aktualisieren',
     'create' => 'Erstellen',
     'created' => 'Erstellt',

@@ -12,7 +12,7 @@ class HomeController {
             return redirect('/login');
         }
 
-        $articles = Article::limit(20)
+        $articles = Article::limit(15)
             ->with('user')
             ->with('badge')
             ->orderByDesc('created_at')

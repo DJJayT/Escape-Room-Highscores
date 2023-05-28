@@ -46,10 +46,10 @@
                 </div>
             </div>
             <div class="text-end mb-3">
-                <button class="btn btn-primary me-2" type="submit">{{ __('common.submit') }}</button>
-                <a href="{{ route('home') }}">
-                    <button class="btn btn-primary btn-danger" type="button">{{ __('common.cancel') }}</button>
+                <a href="{{ route('home') }}" class="btn btn-primary btn-danger">
+                    {{ __('common.cancel') }}
                 </a>
+                <button class="btn btn-primary me-2" type="submit">{{ __('common.submit') }}</button>
             </div>
         </form>
     </div>

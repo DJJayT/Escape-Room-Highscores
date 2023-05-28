@@ -34,7 +34,12 @@
                                  src="{{ asset('storage/images/profiles/' . $avatar) }}">
                             <div>
                                 <p class="fw-bold mb-0">{{ $article->user->name ?? __('common.deleted_employee') }}</p>
-                                <p class="text-muted mb-0">{{ $article->created_at }}</p>
+                                <p class="text-muted mb-0">{{ $article->updated_at->format('d.m.Y') }}
+
+                                    @if($article->updated_at != $article->created_at)
+                                        ({{ __('common.edited') }})
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>

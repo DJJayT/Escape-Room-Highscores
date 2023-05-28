@@ -21,13 +21,17 @@ class MessageController {
 
     public function index() {
 
-        $messages = Article::with('badge')
+        $articles = Article::with('badge')
             ->with('user')
+            ->orderBy('created_at', 'desc')
             ->paginate(50);
+
+        $user = auth()->user();
 
         return view('messages.all_messages')
             ->with([
-                'messages' => $messages,
+                'articles' => $articles,
+                'user' => $user,
             ]);
     }
 
