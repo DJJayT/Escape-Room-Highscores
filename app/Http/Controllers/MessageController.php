@@ -49,5 +49,55 @@ class MessageController {
             ->with('success', __('messages.success'));
     }
 
+    public function editMessageView(int $id) {
+        $article = Article::find($id);
+        $user = auth()->user();
+
+        if ($article->user_id !== $user->id) {
+            return redirect()
+                ->route('home')
+                ->with('error', __('messages.edit-permission-error'));
+        }
+
+        $badges = Badge::all();
+
+        return view('messages.edit_message')
+            ->with([
+                'article' => $article,
+                'badges' => $badges,
+            ]);
+    }
+
+    public function editMessage(ArticleRequest $request, $id): RedirectResponse {
+        $article = Article::find($id);
+
+        $article->header = $request->input('header');
+        $article->paragraph = $request->input('message');
+        $article->badge_id = $request->input('badge_id');
+
+        $article->save();
+
+        return redirect()
+            ->route('home')
+            ->with('success', __('messages.edit-success'));
+    }
+
+    public function deleteMessage(int $id): RedirectResponse {
+        $article = Article::find($id);
+        $user = auth()->user();
+
+        if ($article->user_id !== $user->id) {
+            return redirect()
+                ->route('home')
+                ->with('error', __('messages.delete-permission-error'));
+        }
+
+        $article->delete();
+
+        return redirect()
+            ->route('home')
+            ->with('success', __('messages.delete-success'));
+    }
+
 
 }

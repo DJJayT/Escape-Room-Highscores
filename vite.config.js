@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
@@ -7,6 +7,9 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                'resources/css/app.css',
+                'resources/css/SIdebar-Responsive-2-ResponsiveSideBar-2.css',
+                'resources/css/SIdebar-Responsive-2.css',
             ],
             refresh: true,
         }),

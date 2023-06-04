@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
@@ -62,16 +63,29 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('all', [MessageController::class, 'index'])
             ->name('showAllMessages');
 
+        Route::get('messages/{id}/edit', [MessageController::class, 'editMessageView'])
+            ->name('editMessage');
+        Route::post('messages/{id}/edit', [MessageController::class, 'editMessage'])
+            ->name('editMessage');
+
+        Route::get('messages/{id}/delete', [MessageController::class, 'deleteMessage'])
+            ->name('deleteMessage');
+
 
         Route::get('messages/{id}', [MessageController::class, 'show'])
             ->name('showMessage');
         Route::post('messages', [MessageController::class, 'store'])
             ->name('storeMessage');
-        Route::get('messages/{id}/edit', [MessageController::class, 'edit'])
-            ->name('editMessage');
-        Route::put('messages/{id}', [MessageController::class, 'update'])
-            ->name('updateMessage');
         Route::delete('messages/{id}', [MessageController::class, 'destroy'])
             ->name('destroyMessage');
     });
+
+    Route::group(['name' => 'badge', 'prefix' => 'badge'], function () {
+        Route::get('create', [BadgeController::class, 'createBadgeView'])
+            ->name('createBadge');
+        Route::post('create', [BadgeController::class, 'createBadge'])
+            ->name('createBadge');
+    });
+
+
 });
