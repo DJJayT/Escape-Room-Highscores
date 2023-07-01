@@ -16,7 +16,7 @@
         "postcss": "^8.1.14",
         "sass": "^1.58.2",
         "scss": "^0.2.4",
-        "vite": "^4.0.0"
+        "vite": ">=4.3.9"
     },
     "dependencies": {
         "@defstudio/vite-livewire-plugin": "^1.0.3",
